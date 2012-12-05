@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>FBTest</title>
+  <meta name="viewport" 
+        content="initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+
+<style>
+  body.connected #login { display: none; }
+  body.connected #logout { display: block; }
+  body.not_connected #login { display: block; }
+  body.not_connected #logout { display: none; }
+</style>
+</head>
+<body class="not_connected">
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '566593253357509', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    FB.Event.subscribe('auth.statusChange', handleStatusChange);//What to do after status change
+  };
+
+
+  function handleStatusChange(response) {
+      document.body.className = response.authResponse ? 'connected' : 'not_connected';
+      (response.authResponse)?alert("hello") : alert("goodbye");
+      if (response.authResponse) {
+        console.log(response);
+        updateUserInfo(response);
+      }
+        console.log(response.status);
+    }
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); 
+     js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+<div id="login">
+   <p><button onClick="loginUser();">Login</button></p>
+ </div>
+ <div id="logout">
+   <p><button  onClick="FB.logout();">Logout</button></p>
+ </div>
+
+ <script>
+   function loginUser() {    
+     FB.login(function(response) { }, {scope:'email'});     
+     }
+ </script>
+ <div id="user-info"></div>
+ <script>
+ //Because Omar can
+ /*
+   function updateUserInfo(response) {
+     FB.api('/me', function(response) {
+       document.getElementById('user-info').innerHTML = '<img src="https://graph.facebook.com/' + response.id + '/picture">' + response.name;
+     });
+   }
+   */
+ </script>
+	Page to Like.
+</body>
+</html>

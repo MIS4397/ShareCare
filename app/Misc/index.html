@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>ShareCare</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Apple Icon -->
+	<link rel="apple-touch-icon-precomposed" size="114x114" href="images/splash-icon.png">
+<!-- Loading Screen -->
+	<link rel="apple-touch-startup-image" href="images/splash-screen.gif" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+<!-- jQuery and jQuery mobile scripts --> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<!-- Additional Script and Styles -->
+	<script type="text/javascript" src="js/menuScript.js"></script>
+	<link rel="stylesheet" href="style/mainStyle.css"/>
+</head>
+
+<body>
+
+<div data-role="page" class="pages" id="home">
+	<div data-role="header" data-theme="b">
+		<img src="images/LogoIcon.png" style="float:left; position:relative; top: 6px; left: 20px;"></img>
+		<h1>ShareCare</h1>
+	</div><!-- /header -->
+
+	
+	<div data-role="content">
+		<div style="text-align: center;">
+			<!-- LogoText -->
+			<p class="center-text"><img src="images/sharecare.png" alt="img"></p>
+		<h4 class="center-text slider-heading-one">The Volunteer App</h4>
+	</div>
+		<p class="center-text">ShareCare is the fastest growing volunteer app in the nation! Log in or sign up today to get started with finding volunteer opportunities around you. Research Company, Research Events, review and comment, and connect with people that share your interest for caring!</p>
+
+		
+		<form id="chris" action="Login.php" method="post" data-ajax="false">
+			<label hidden>Email Address :</label>
+				<input type="text" name="username" placeholder="Email Address:"/><br />
+			<label hidden>Password :</label>
+				<input type="password" name="password" placeholder="Password:"/><br/>
+			<input type="submit" value="Log In"/><br />
+		</form>
+		
+			
+		<a href="#signUp" data-role="button" data-theme="e"> Get Started Today!</a>
+		
+		
+		<!--CopyRight Code--> 
+		<p class="center-text copyright">Copyright 2012. All rights reserved</p>
+
+	</div><!-- /Log In Content -->
+</div><!-- /Log In Page -->
+
+<div data-role="page" id="signUp">
+	<div data-role="header" data-theme="b">
+		<img src="images/LogoIcon.png" style="float:left; position:relative; top: 6px; left: 20px;"></img>
+		<h1>ShareCare</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<h2 class="center-text"> Sign Up Today! </h2>
+	
+	 <div class="decoration"></div>
+	 
+<!-- Sign up form-->
+	 <form data-ajax="false" action="SignUp.php" method="post" id="signup">
+			<div data-role = "fieldcontain">
+				<input type="text" name="username" placeholder="Email:">
+			</div>
+			<div data-role = "fieldcontain">
+				<input type="text" name="first" placeholder="First Name:">
+			</div>
+			<div data-role = "fieldcontain">
+				<input type="text" name="last" placeholder="Last Name:">
+			</div>
+			<div data-role = "fieldcontain">
+				<label for="DOB">Date of Birth</label>
+				<input type="date" name="DOB" placeholder="Date of Birth:">
+			</div>
+			<div data-role="fieldcontain">
+				<input type="password" name="password1" placeholder="Enter a Password">
+			</div>
+			<div data-role="fieldcontain">
+				<input type="password" name="password2"  placeholder="Re-enter your password">
+			</div>
+			 
+			<div data-role="fieldcontain">
+				<label for="orgBool"> Are you an Organization:</label>
+				<select name="orgBool" id="orgBool" data-role="slider" onchange="$('#orgForm').toggle();" >
+					<option value="off" selected>No</option>
+					<option value="on" >Yes</option>
+				</select>
+			</div>
+<!--RADIO ORG MEM SELECTION -->
+<div id='orgForm' hidden> 			
+			
+<!-- Org Section of Sign up form -->
+
+			<div data-role="fieldcontain">
+				<input type="text" name="orgname"  placeholder="Organization Name">
+			</div>
+			
+			<div data-role="fieldcontain">
+				<input type="text" name="website"  placeholder="Website URL">
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="orgaddress" placeholder="Organization Address:"></textarea>
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="orgcity" placeholder="Organization City:"></textarea>
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="orgstate" placeholder="Organization State:"></textarea>
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="orgzip" placeholder="Organization Zip:"></textarea>
+			</div>
+			
+			<div data-role="fieldcontain">
+				<input type="text" name="contactname"  placeholder="Contact Name:">
+			</div>
+			
+			<div data-role="fieldcontain">
+				<input type="text" name="contactphone"  placeholder="Contact Phone Number:">
+			</div>
+			
+			<div data-role="fieldcontain">
+				<input type="text" name="contactemail"  placeholder="Contact Email:">
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="type" placeholder="Type"></textarea> 
+			</div>
+			
+			<div data-role="fieldcontain">
+				<textarea name="description" placeholder="Description"></textarea>
+			</div>
+			
+</div>
+			<div id="error">
+			</div>
+
+			<div data-role = "fieldcontain">
+				<input type="button" value="Sign Up" onclick="valSubmit()">
+			</div>
+	 </form>
+
+	</div><!-- /Sign Up Content -->
+</div><!-- /Sign up Page -->
+
+<script language="javascript">
+	function valSubmit(){
+		$.post('SignUp.php', $('form#signup').serialize(), function(text, status){
+			
+			switch(text){
+				case 'org':
+					window.location.replace('orgDash.html');
+					break;
+				case 'user':
+					window.location.replace('userHome.html');
+					break;
+				default:
+					$('#error').html(text);
+			}
+		});
+	}
+
+
+</script>
+
+
+</body>
+</html>

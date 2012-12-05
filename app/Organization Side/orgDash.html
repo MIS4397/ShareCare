@@ -1,0 +1,544 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Apple Icon -->
+	<link rel="apple-touch-icon" size="114x114" href="images/splash-icon.png">
+<!-- Loading Screen -->
+	<link rel="apple-touch-startup-image" href="images/splash-screen.gif"/>
+<!-- jQuery and jQuery mobile scripts --> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<!-- Additional Script and Styles -->
+	<script type="text/javascript" src="js/menuScript.js"></script>
+	<link rel="stylesheet" href="style/mainStyle.css"/>
+</head>
+<body>
+<!--- MENU -->
+<div id="menu" >
+<h3>ShareCare Menu</h3>
+	<ul>
+		<li class="active"><a href="#orgDash" class="contentLink">Home</a></li>
+		<li><a href="#editProfile" class="contentLink">Edit Profile </a></li>
+		<li><a href="#eventListPage" class="contentLink" >Edit Events </a></li>
+		<li><a href="#addEvent" class="contentLink" >Add an Event </a></li>
+	</ul>
+</div>
+<!--- ORG DASH PAGE -->
+
+<!--- ***************************************************
+					START OF ORG DASHBOARD PAGE
+	  ***************************************************-->
+<div data-role="page" id="orgDash">
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>&nbsp;&nbsp;DashBoard</h1>
+	</div><!-- /header -->
+
+<!-- ORG DASH CONTENT -->
+	<div data-role="content">
+		<div style="text-align: center;">
+			<img src="images/defaultProf.png">
+			<h2 id="orgDashName">Organization Dashboard</h2>
+			<h4 id="orgDashInfo">Organization Address</h4>
+		</div>
+		
+		
+		<table cellspacing='0' class='table'>
+				<tr>
+					<th>EVENTS</th>
+					<th>LEADS</th>
+				</tr>
+				
+				<tr>
+					<td id="eventNum">0</td>
+					<td id="leadNum">0</td>
+				</tr>
+				<tr></tr><!-- for styling purpose-->
+		</table>
+		
+		<table id="eventList">
+			<tr><th><h2> Your Upcoming Events: </h2></th></tr>
+			
+			<tr>
+			<td>
+				<p> </p>
+			</td>
+			</tr>
+		</table>
+	</div><!-- /ORG DASH Content -->
+</div><!-- /ORG DASH Page -->
+
+
+
+
+<!--- ***************************************************
+					START OF EDIT ORG PAGE
+	  ***************************************************-->
+<!-- EDIT ORG PAGE --> 
+<div data-role="page" id="editProfile">
+
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu" data-ajax="false">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>&nbsp;&nbsp;DashBoard</h1>
+	</div><!-- /header -->
+
+<!-- EDIT ORG CONTENT -->
+	<div data-role="content">
+		<form action="UpdateOrg.php" method="post" id="orgProfForm">
+			<input type="hidden" name="org_id" value='' class='editProf'>
+			<div data-role = "fieldcontain">
+				<label for="name">Organization Name:</label></br>
+				<input type="text" name="orgname" value='' class='editProf'>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="website">Website:</label><br/>
+				<input type="url" name="website" value='' class='editProf'>
+			</div>		
+			<div data-role="fieldcontain">
+				<label for="address">Address:</label><br/>
+				<input type="text" name="address" value='' class='editProf'>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="city">City:</label><br/>
+				<input type="text" name="city" value='' class='editProf'>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="state">State:</label><br/>
+				<input type="text" name="state" value='' class='editProf'>
+			</div>
+			<div data-role="fieldcontain">
+				<label for="zip">Zip:</label><br/>
+				<input type="text" name="zip" value='' class='editProf'>
+			</div>	
+			<div data-role="fieldcontain">
+				<label for="type">Type</label><br/>
+				<textarea name="orgtype" class='editProf'></textarea> 
+			</div>	
+			<div data-role="fieldcontain">
+				<label for="">Description</label><br/>
+				<textarea name="desc" class='editProf'></textarea>
+			</div>
+			<div data-role="fieldcontain">
+				<label for='contactname' >Contact Name :</label></br>
+				<input type="text" name="contactname" value='' class='editProf'/><br />
+			</div>
+			<div data-role="fieldcontain">
+				<label for="contactphone" >Contact Phone :</label></br>
+				<input type="text" name="contactphone" value='' class='editProf'/><br />
+			</div>
+			<div data-role="fieldcontain">
+				<label for="contactemail">Contact Email :</label></br>
+				<input type="email" name="contactemail" value='' class='editProf'/><br />
+			</div>
+			
+			<div data-role ="fieldcontain">
+				<input type="button" value="Update" onclick="updateOrgValues()">
+			</div>
+		</form>
+	</div><!-- /EDIT ORG Content -->
+</div><!-- /EDIT ORG Page -->
+
+
+
+<!--- ***************************************************
+					START OF EVENT LIST PAGE
+	  ***************************************************-->
+
+<div data-role="page" id="eventListPage">
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>&nbsp;&nbsp;Your Events</h1>
+	</div><!-- /header -->
+
+<!-- ORG DASH CONTENT -->
+	<div data-role="content">
+		<table id="eventListFull">
+			<tr><th><h2 id="orgDashNameList"></h2></th></tr>
+			
+			<tr>
+			<td>
+				<p> </p>
+			</td>
+			</tr>
+		</table>
+	</div><!-- /ORG DASH Content -->
+</div><!-- /ORG DASH Page -->
+
+
+<!--- ***************************************************
+					START OF ADD EVENT PAGE
+	  ***************************************************-->
+<!-- ADD EVENT PAGE -->
+<div data-role="page" id="addEvent" >
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu" data-ajax="false">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>&nbsp;&nbsp;DashBoard</h1>
+	</div><!-- /header -->
+	
+<!-- Add Event Content -->
+	<div data-role="content" >
+		<div style="text-align: center;">
+				<img src="images/defaultProf.png">
+				<h2 id="orgDashNameAdd">Organization Dashboard</h2>
+				<h4 id="orgDashInfoAdd">Organization Address</h4>
+		</div>
+		
+		<form action="AddEvent.php" method="post" id="addEventForm">
+			<div data-role="fieldcontain">
+				<label for="eventname">Name of Event:</label></br>
+				<input type="text" name="eventname" placeholder="ex. Beach Cleanup, Food Bank, etc."/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="evendate">Date of Event</label></br>
+					<input type="date" name="eventdate" placeholder="Date of Event"/><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventdesc">Description</label></br>
+					<input type="text" name="eventdesc" placeholder="Description"/><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventtype">Event Type</label></br>
+					<select name="eventtype">
+					<option value="Seniors">Seniors</option>
+					<option value="Animals">Animals</option>
+					<option value="Children">Children</option>
+					<option value="Community">Community</option>
+					<option value="Education">Education</option>
+					<option value="Health">Health</option>
+					</select>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventstart">Start Time</label></br>
+					<input type="time" name="eventstart" placeholder="Start Time"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventstop">End Time</label></br>
+					<input type="time" name="eventstop" placeholder="End Time"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for='contactname' >Contact Name :</label></br>
+					<input type="text" name="contactname"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="contactphone" >Contact Phone :</label></br>
+					<input type="text" name="contactphone"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="contactemail">Contact Email :</label></br>
+					<input type="email" name="contactemail"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="address">Address :</label></br>
+					<input type="text" name="address"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="city">City :</label></br>
+					<input type="text" name="city"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="state">State :</label></br>
+					<input type="text" name="state"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="zip">Zip :</label></br>
+					<input type="text" name="zip"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="duties" >Duties :</label></br>
+					<textarea name="duties"></textarea><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="requirements" >Requirements :</label></br>
+					<textarea name="requirements"></textarea><br/>
+			</div>
+			<input type="button" value="Add Event" onclick="addEvents()">
+		</form>
+	</div><!--  /Add Event Content -->	
+</div><!--  /Add Event Page -->
+
+
+
+<!--- ***************************************************
+					START OF EDIT EVENT PAGE
+	  ***************************************************-->
+<div data-role="page" id="editEvent" >
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu" data-ajax="false">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>Edit Event</h1>
+	</div><!-- /header -->
+	
+<!-- Add Event Content -->
+	<div data-role="content" >
+		<form name="addEvent" action="UpdateEvent.php" method="POST" id="editEventForm">
+			<input type="hidden" name="eventID" value='' class="editEvent" />
+			<div data-role="fieldcontain">
+					<label for="eventname">Name of Event:</label></br>
+					<input type="text" name="eventname" value='' class="editEvent" /><br />
+			</div>
+			<input type="hidden" name="orgID" value='' class="editEvent" />
+			<div data-role="fieldcontain">
+					<label for="evendate">Date of Event</label></br>
+					<input type="date" name="eventdate" value='' class="editEvent"/><br />
+			</div>
+			<input type="hidden" name="dateAdd" value='' class="editEvent" />
+			<div data-role="fieldcontain">
+					<label for="eventdesc">Description</label></br>
+					<input type="text" name="eventdesc" value='' class="editEvent"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventtype">Event Type</label></br>
+					<input type="text" name="eventtype" value='' class="editEvent"/><br/>
+			</div>
+			<input type="hidden" name="typePic" value='' class="editEvent" />
+			<div data-role="fieldcontain">
+					<label for="eventstart">Start Time</label></br>
+					<input type="time" name="eventstart" value='' class="editEvent"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="eventstop">End Time</label></br>
+					<input type="time" name="eventend" value='' class="editEvent"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for='contactname' >Contact Name :</label></br>
+					<input type="text" name="contactname" value='' class="editEvent"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="contactphone" >Contact Phone :</label></br>
+					<input type="text" name="contactphone" value='' class="editEvent"/><br />
+			</div>
+			<div data-role="fieldcontain">
+					<label for="contactemail">Contact Email :</label></br>
+					<input type="email" name="contactemail" value='' class="editEvent"/><br />
+			</div> 
+			<div data-role="fieldcontain">
+					<label for="address">Address :</label></br>
+					<textarea name="address" class="editEvent"></textarea><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="city">City :</label></br>
+					<input type='text' name="city" class="editEvent" value=''/><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="state">State :</label></br>
+					<input type='text' name="state" class="editEvent" value=''><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="zip">Zip :</label></br>
+					<input type='text' name="zip" class="editEvent" value=''><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="duties">Duties :</label></br>
+					<textarea name="duties" class="editEvent"></textarea><br/>
+			</div>
+			<div data-role="fieldcontain">
+					<label for="requirements" >Requirements :</label></br>
+					<textarea name="requirements" class="editEvent"></textarea><br/>
+			</div>
+			<input type="hidden" name='event_id'  value='' hidden class="editEvent">
+			<input type="button" value="Update" onclick="updateEventValues()"/><br />
+			<input type="button" value="Delete" onclick="deleteEvent()">
+		</form>
+	</div><!-- /Edit Event Content -->
+</div> <!-- /Edit Event Page -->
+
+<!-- ************ DIALOGS  ************* -->
+
+<div data-role="dialog" id="Success">
+	<div data-role="header">
+		<h1>Success!</h1>
+	</div>
+	
+	<div data-role="content">
+		<p> Update Complete</p>
+		<p><input type='button' value='OK' onclick='refreshDash()'/></p>
+	</div>
+</div>
+
+<div data-role="dialog" id="Failure">
+	<div data-role="header">
+		<h1>Oops!</h1>
+	</div>
+	
+	<div data-role="content">
+		<p>You must fill in all the required fields</p>
+		<p><a href="#orgDash" data-role="button" data-rel="bacK">OK</a></p>
+	</div>
+</div>
+
+
+<!--- ***************************************************
+					SCRIPT SECTION
+	  ***************************************************-->
+
+<script language="javascript">
+//This function is jQuery AJAX to get the Org Info from the Database
+var orgName = '';
+/*   ************  CODE FOR DIALOGS  ********* */ 
+
+function refreshDash(){
+	$.mobile.changePage("#orgDash");
+	popHeader();
+}
+
+/*   ************  CODE FOR ORG DASHBOARD PAGE  ********* */ 
+$('#orgDash').live('pageinit', function(event){popHeader();});
+
+
+function popHeader(){
+
+	var org_name;
+
+	$.post('OrgDashboard.php', function(responseText, status){
+		var a = responseText.split("**");
+		$("#orgDashName").html(a[1]);
+		org_id = a[0];
+		orgName = a[1];
+		$("#orgDashInfo").html(a[2]+"<br>"+a[3]+"<br>"+a[4]+", "+a[5]+" "+a[6]);
+		$("#leadNum").html(a[7]);
+		$.get("EventsList.php", function(text, status){
+			var b = text.split("<hr>");
+			console.log(b.length-1);
+			$('#eventNum').text(b.length-1);
+			$('.event').remove();
+			for(x=0; x<b.length; x++){
+				$('#eventList tr:last').before(b[x]);
+			}
+		})
+	});
+	
+	setTimeout(function() {
+		$('td').click(function(){
+			var event_id = $(this).find('div').html();
+			storeID(event_id);
+			$.mobile.changePage('#editEvent');
+			});
+	}, 1000);
+		
+}
+
+function storeID(event_id){
+	console.log(event_id);
+	$.get('storeEventID.php?event_id='+event_id);
+}
+
+/*   ************  CODE FOR EDIT EVENT PAGE  ********* */ 
+
+$('#editEvent').live('pageshow', function(event){ popEventValues();});
+
+function popEventValues(){
+	$.post('EditEvent.php', function(responseText, status){
+		values = responseText.split("**");
+		$('.editEvent').each(function(index){
+			console.log(index + " " + $(this).attr("name"));
+			$(this).attr("value", values[index]);
+			console.log(index + ' ' + $(this).attr('value'));
+		});
+	});
+}	
+
+function updateEventValues(){
+	$.post('UpdateEvent.php', $('form#editEventForm').serialize() ,function(responseText, status){
+		if(responseText == "OK"){
+			 $.mobile.changePage("#Success");
+		}
+		else{
+			$.mobile.changePage("#Failure");
+		}
+	});
+}
+
+/*   ************  CODE FOR EDIT ORG PAGE  ********* */ 
+
+$('#editProfile').live('pagecreate', function(event){ popOrgValues();});
+
+function popOrgValues(){
+	$.post('EditOrgProfile.php', function(responseText, status){
+		values = responseText.split("**");
+		$('.editProf').each(function(index){
+			console.log(index + " " + $(this).attr("name"));
+			$(this).attr("value", values[index]);
+			console.log(index + ' ' + $(this).attr('value'));
+		});
+	});
+}	
+
+
+function updateOrgValues(){
+	$.post('UpdateOrg.php', $('form#orgProfForm').serialize() ,function(responseText, status){
+		if(responseText == "OK"){
+			 $.mobile.changePage("#Success");
+		}
+		else{
+			$.mobile.changePage("#Failure");
+		}
+	});
+}
+
+/*   ************  CODE FOR EVENT LIST PAGE  ********* */ 
+
+$('#eventListPage').live('pagecreate',function(event){ 
+	$("#orgDashNameList").html(orgName);
+	$.get("EventsList.php", function(text, status){
+			var eventArray = text.split("<hr>");
+			for(x=0; x<eventArray.length; x++){
+				$('#eventListFull tr:last').before(eventArray[x]);
+			}
+		});
+
+	setTimeout(function() {
+		$('td').click(function(){
+			var event_id = $(this).find('div').html();
+			storeID(event_id);
+			$.mobile.changePage('#editEvent');
+			});
+	}, 1000);
+		
+		//jQuery Mobile exposes several methods and properties on the $.mobile object for use in your applications.
+
+		//$.mobile.changePage (method)
+});
+
+
+
+/*   ************  CODE FOR ADD EVENT PAGE  ********* */ 
+
+$('#addEvent').live('pageinit', function(event){
+	$.post('OrgDashboard.php', function(responseText, status){
+		var a = responseText.split("**");
+		console.log(a);
+		$("#orgDashNameAdd").html(a[1]);
+		$("#orgDashInfoAdd").html(a[2]+"<br>"+a[3]+"<br>"+a[4]+", "+a[5]+" "+a[6]);
+	});
+});
+
+function addEvents(){
+	//Form Validation
+	//Form Submission
+	$.post('AddEvent.php', $('form#addEventForm').serialize() ,function(responseText, status){
+		if(responseText == "OK"){
+			 $.mobile.changePage("#Success");
+		}
+		else{
+			$.mobile.changePage("#Failure");
+		}
+	});
+}
+
+
+
+
+
+</script> 
+
+</body>
+</html>

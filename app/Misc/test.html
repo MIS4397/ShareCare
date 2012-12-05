@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>Edit Event</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Apple Icon -->
+	<link rel="apple-touch-icon" sizes="114x114" href="images/">
+<!-- Loading Screen -->
+	<link rel="apple-touch-startup-image" href="images/" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" />
+<!-- jQuery and jQuery mobile scripts --> 
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
+<!-- Additional Script and Styles -->
+	<script type="text/javascript" src="js/menuScript.js"></script>
+	<link rel="stylesheet" href="style/mainStyle.css"/>
+</head> 
+
+<body>
+<div data-role="page" class="pages" >
+	<div data-role="header" data-theme="b">
+		<a href="#" class="showMenu">Menu</a>
+		<img src="images/LogoIcon.png" style="float:right; position:relative; top: 6px; right: 10px;"></img>
+		<h1>&nbsp;&nbsp;DashBoard</h1>
+	</div><!-- /header -->
+	
+
+<div data-role="content">
+<table id="eventList">
+			<tbody><tr><th><h2> Your Upcoming Events: </h2></th></tr>
+			
+			<tr>
+			<td>
+			<p id="eventDate">2012-11-23 6</p>
+			<img src="images/defaultProf.png">
+			<p id="eventTD" style="font-size: 1.5em">Food Drive</p>
+			<p id="eventTD">Bring food and share care.</p>
+			<div hidden>6</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<p id="eventDate">2012-11-15</p>
+			<img src="images/defaultProf.png">
+			<p id="eventTD" style="font-size: 1.5em">saf</p>
+			<p id="eventTD">sdfs</p>
+			<div hidden>7</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+			<p id="eventDate">2012-11-12</p>
+			<img src="images/defaultProf.png">
+			<p id="eventTD" style="font-size: 1.5em">Test two</p>
+			<p id="eventTD">This will be the best event ever</p>
+			<div hidden>8</div>
+			</td>
+			</tr>
+			<tr>
+			<td>
+				<p> <!--- Bottom --></p>
+			</td>
+			</tr>
+		</tbody></table>
+	</div>
+</div> 
+
+		<script language='javascript'>
+			$('td').click(function(){
+				
+				console.log(event_id);
+			});
+			
+			
+		</script>
+		
+		
+
+</body>
